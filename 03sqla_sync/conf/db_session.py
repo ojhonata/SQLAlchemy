@@ -16,7 +16,7 @@ def create_engine(sqlite: bool = False) -> Engine:
     global __engine
 
     if __engine:
-        return
+        return __engine
     
     # config SQLite
     if sqlite:
@@ -27,7 +27,7 @@ def create_engine(sqlite: bool = False) -> Engine:
         conn_str = f'sqlite:///{arquivo_db}'
         __engine = sa.create_engine(url=conn_str, echo=False, connect_args={'check_same_thread': False})
     
-    # config postgresql
+    # config postgresql ou outro banco
     else:
         # postgresql://usuario:senha@localhost:porta/banco
         conn_str = 'postgresql://postgres:280103@localhost:5432/picoles'
@@ -47,7 +47,7 @@ def create_session() -> Session:
 
     return session
 
-def create_tabel() -> None:
+def create_tables() -> None:
     global __engine
 
     if not __engine:

@@ -1,4 +1,4 @@
-from conf.db_session import create_tabel
+from conf.db_session import create_tables
 
 if __name__ == '__main__':
-    create_tabel()
+    create_tables()
