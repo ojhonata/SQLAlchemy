@@ -31,7 +31,7 @@ def create_engine(sqlite: bool = False) -> Engine:
     else:
         # postgresql://usuario:senha@localhost:porta/banco
         conn_str = 'postgresql://postgres:280103@localhost:5432/picoles'
-        __engine = sa.create_engine(url=conn_str, echo=False)
+        __engine = sa.create_engine(url=conn_str, echo=True)
     
     return __engine
 
