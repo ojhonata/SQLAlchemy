@@ -4,7 +4,8 @@ from models.model_base import ModelBase
 
 
 class TipoEmbalagem(ModelBase):
-    __tablename__ = 'tipos_embalagem'
+    __tablename__: str = 'tipos_embalagem'
+    __allow_unmapped__ = True
 
     id: int = sa.Column(sa.BigInteger, primary_key=True, autoincrement=True)
     data_criacao: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)

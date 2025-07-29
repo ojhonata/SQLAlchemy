@@ -4,6 +4,7 @@ from models.model_base import ModelBase
 
 class AditivoNutritivo(ModelBase):
     __tablename__: str = 'aditivos_nutritivos'
+    __allow_unmapped__ = True
 
     id: int = sa.Column(sa.BigInteger, primary_key=True, autoincrement=True)
     data_criacao: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)

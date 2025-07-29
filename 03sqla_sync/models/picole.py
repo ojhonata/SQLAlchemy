@@ -29,14 +29,16 @@ conservantes_picole = sa.Table(
 
 # Picolé pode ter vários aditivos nutritivos
 aditivos_nutritivos_picole = sa.Table(
-    ModelBase.metdata,
+    'aditivos_nutritivos_picole',
+    ModelBase.metadata,
     sa.Column('id_picole', sa.Integer, sa.ForeignKey('picoles.id')),
     sa.Column('id_aditivo_nutritivo', sa.Integer, sa.ForeignKey('aditivos_nutritivos.id'))
 )
 
 
 class Picole(ModelBase):
-    __tablename__ = 'picoles'
+    __tablename__: str = 'picoles'
+    __allow_unmapped__ = True
 
     id: int = sa.Column(sa.BigInteger, primary_key=True, autoincrement=True)
     data_criacao: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)
@@ -62,4 +64,4 @@ class Picole(ModelBase):
     aditivos_nutritivos: Optional[List[AditivoNutritivo]] = orm.relationship('AditivoNutritivo', secondary=aditivos_nutritivos_picole, backref='aditivo_nutritivo', lazy='joined')
 
     def __repr__(self) -> int:
-        return f'<Lote: {self.id}>' 
+        return f'<Lote: {self.id}>'

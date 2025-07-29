@@ -4,7 +4,8 @@ from models.model_base import ModelBase
 
 
 class Revendedor(ModelBase):
-    __tablename__ = 'revendedores'
+    __tablename__: str = 'revendedores'
+    __allow_unmapped__ = True
 
     id: int = sa.Column(sa.BigInteger, primary_key=True, autoincrement=True)
     data_criacao: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)

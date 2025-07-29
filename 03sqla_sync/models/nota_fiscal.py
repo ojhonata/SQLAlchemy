@@ -16,7 +16,8 @@ lotes_nota_fiscal = sa.Table(
 )
 
 class NotaFiscal(ModelBase):
-    __tablename__ = 'notas_fiscais'
+    __tablename__: str = 'notas_fiscais'
+    __allow_unmapped__ = True
 
     id: int = sa.Column(sa.BigInteger, primary_key=True, autoincrement=True)
     data_criacao: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)
