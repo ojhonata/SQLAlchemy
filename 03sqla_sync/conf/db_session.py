@@ -5,11 +5,15 @@ from sqlalchemy.orm import sessionmaker
 from pathlib import Path
 from typing import Optional
 
+from dotenv import load_dotenv
+import os
+
 from sqlalchemy.orm import Session
 from sqlalchemy.future.engine import Engine
 
 from models.model_base import ModelBase
 
+load_dotenv()
 __engine: Optional[Engine] = None
 
 def create_engine(sqlite: bool = False) -> Engine:
@@ -30,7 +34,7 @@ def create_engine(sqlite: bool = False) -> Engine:
     # config postgresql ou outro banco
     else:
         # postgresql://usuario:senha@localhost:porta/banco
-        conn_str = 'postgresql://postgres:280103@localhost:5432/picoles'
+        conn_str = os.getenv('database_url')
         __engine = sa.create_engine(url=conn_str, echo=False)
     
     return __engine
