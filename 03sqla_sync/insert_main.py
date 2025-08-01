@@ -45,12 +45,17 @@ def insert_tipo_embalagem() -> None:
 
 # 4 Tipo Picole
 def insert_tipo_picole() -> None:
-    nome: str = input('Digite um Tipo de Picolé: ')
-    tp: TipoPicole = TipoPicole(nome=nome)
+    # nome: str = input('Digite um Tipo de Picolé: ')
+    # tp: TipoPicole = TipoPicole(nome=nome)
+
+    lista_tp = ['Leite', 'Água']
 
     with create_session() as session:
-        session.add(tp)
+        for nome in lista_tp:
+            tp = TipoPicole(nome=nome)
+            session.add(tp)
         session.commit()
+        return '...'
 
 # 5 Ingredientes
 def insert_ingrediente() -> None:
@@ -63,13 +68,16 @@ def insert_ingrediente() -> None:
 
 # 6 conservantes
 def insert_conservantes() -> None:
-    nome: str = input('Digite o Conservante: ')
-    descricao: str = input('Digite uma descrição do conservante: ')
+    # nome: str = input('Digite o Conservante: ')
+    # descricao: str = input('Digite uma descrição do conservante: ')
 
-    conservante: Conservante = Conservante(nome=nome, descricao=descricao)
+    # conservante: Conservante = Conservante(nome=nome, descricao=descricao)
+
+    conservante = [Conservante(nome='Ácido Cítrico', descricao='Chama'), 
+                   Conservante(nome='Soda', descricao='Morte')]
 
     with create_session() as session:
-        session.add(conservante)
+        session.add_all(conservante)
         session.commit()
 
 # 7 revendedores
@@ -88,12 +96,19 @@ def insert_revendedor() -> Revendedor:
 
 if __name__ == '__main__':
     #insert_aditivo_nutritivo()
-    #insert_sador()
-    #insert_tipo_embalagem()
-    #insert_tipo_picole()
-    #insert_ingrediente()
-    #insert_conservantes()
-    rev = insert_revendedor()
-    print(rev)
 
-    print(f'ID: {rev.id}')
+    #insert_sador()
+
+    #insert_tipo_embalagem()
+
+    #insert_tipo_picole()
+
+    #insert_ingrediente()
+
+    insert_conservantes()
+
+
+    # rev = insert_revendedor()
+    # print(rev)
+
+    # print(f'ID: {rev.id}')
