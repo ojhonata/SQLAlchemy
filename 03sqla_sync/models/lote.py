@@ -1,4 +1,5 @@
 import sqlalchemy as sa
+from typing import List
 import sqlalchemy.orm as orm
 from datetime import datetime
 from models.model_base import ModelBase
@@ -13,7 +14,7 @@ class Lote(ModelBase):
     data_criacao: datetime = sa.Column(sa.DateTime, default=datetime.now, index=True)
 
     id_tipo_picole: int = sa.Column(sa.Integer, sa.ForeignKey('tipos_picole.id')) #nome-tabela.campo
-    tipo_picole: TipoPicole = orm.relationship('TipoPicole', lazy='joined') #cong interna SQLAlchemy
+    tipo_picole: List[TipoPicole] = orm.relationship('TipoPicole', lazy='joined') #cong interna SQLAlchemy
     quantidade: int = sa.Column(sa.Integer, nullable=False)
 
     def __repr__(self) -> int:

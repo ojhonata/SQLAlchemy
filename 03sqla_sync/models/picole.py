@@ -52,7 +52,7 @@ class Picole(ModelBase):
     tipo_embalagem: TipoEmbalagem = orm.relationship('TipoEmbalagem', lazy='joined')
 
     id_tipo_picole: int = sa.Column(sa.Integer, sa.ForeignKey('tipos_picole.id'))
-    tipo_picole: TipoPicole = orm.relationship('TipoEmbalagem', lazy='joined')
+    tipo_picole: TipoPicole = orm.relationship('TipoPicole', lazy='joined')
 
     # um picolé pode ter vários ingredientes
     ingredientes: List[Ingrediente] = orm.relationship('Ingrediente', secondary=ingredientes_picole, backref='ingrediente', lazy='joined')

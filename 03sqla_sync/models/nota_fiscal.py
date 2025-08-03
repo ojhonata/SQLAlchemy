@@ -27,10 +27,10 @@ class NotaFiscal(ModelBase):
     descricao: str = sa.Column(sa.String(200), nullable=False)
 
     id_revendedor: int = sa.Column(sa.Integer, sa.ForeignKey('revendedores.id'))
-    revendedor: Revendedor = orm.relationship('revendedores', lazy='joined')
+    revendedor: Revendedor = orm.relationship('Revendedor', lazy='joined')
 
     # uma nota fiscal pode ter vários lotes e um lote pode está ligado a uma nota fiscal
     lotes: List[Lote] = orm.relationship('Lote', secondary=lotes_nota_fiscal, backref='lote', lazy='dynamic')
 
     def __repr__(self) -> int:
-        return f'<Lote: {self.id}>' 
+        return f'Lote: {self.id} \n Valor: {self.valor}'

@@ -8,6 +8,9 @@ from models.ingrediente import Ingrediente
 from models.conservante import Conservante
 from models.revendedor import Revendedor
 
+from models.lote import Lote
+from models.nota_fiscal import NotaFiscal
+
 # 1 Aditivo Nutritivo
 def insert_aditivo_nutritivo() -> None:
     print('Cadastrando Aditivo Nutritivo')
@@ -55,7 +58,7 @@ def insert_tipo_picole() -> None:
             tp = TipoPicole(nome=nome)
             session.add(tp)
         session.commit()
-        return '...'
+        return tp
 
 # 5 Ingredientes
 def insert_ingrediente() -> None:
@@ -82,6 +85,7 @@ def insert_conservantes() -> None:
 
 # 7 revendedores
 def insert_revendedor() -> Revendedor:
+    print('Cadastrando Revendedor')
     cnpj: str = input('Digite o cnpj: ')
     razao_social: str = input('Digite a razão social: ')
     contato: str = input('Digite o contato: ')
@@ -93,6 +97,42 @@ def insert_revendedor() -> Revendedor:
         session.commit()
     return revendedor
 
+# 8 Lotes
+def insert_lote() -> Lote:
+    print('Cadastrando Lote')
+
+    id_tipo_picole: int = input('Digite o id do tipo de picolé: ')
+    quantidade: int = input('Digite a quantidade: ')
+
+    lote: Lote = Lote(id_tipo_picole=id_tipo_picole, quantidade=quantidade)
+    #lotes: Lote = [Lote(id_tipo_picole=1, quantidade=3)]
+
+    with create_session() as session:
+        session.add(lote)
+        session.commit()
+    return lote
+
+# 9 Notas Fiscais
+def insert_nota_fiscal() -> NotaFiscal:
+    # notas_fiscais: NotaFiscal = [NotaFiscal(valor=12.50, numero_serie='55555', descricao='compra de um produto', id_revendedor=1)]
+    print('Cadastrando NF')
+
+    valor: float = input('Digite o valor da NF: ')
+    numero_serie: str = input('Digite o número de serie: ')
+    descricao: str = input('Digite a descrição: ')
+
+    rev = insert_revendedor()
+    id_revendedor = rev.id
+
+    nf: NotaFiscal = NotaFiscal(valor=valor, numero_serie=numero_serie, descricao=descricao, id_revendedor=id_revendedor)
+
+    lote1 = insert_lote()
+    nf.lotes.append(lote1)
+
+    with create_session() as session:
+        session.add(nf)
+        session.commit()
+    return nf
 
 if __name__ == '__main__':
     #insert_aditivo_nutritivo()
@@ -105,10 +145,15 @@ if __name__ == '__main__':
 
     #insert_ingrediente()
 
-    insert_conservantes()
-
+    #insert_conservantes()
 
     # rev = insert_revendedor()
     # print(rev)
 
     # print(f'ID: {rev.id}')
+
+    # lote = insert_lote()
+    # print(lote)
+
+    nota_fiscals = insert_nota_fiscal()
+    print(nota_fiscals)
