@@ -12,4 +12,4 @@ class TipoEmbalagem(ModelBase):
     nome: str = sa.Column(sa.String(45), unique=True, nullable=False)
 
     def __repr__(self) -> str:
-        return f'<Tipo Embalagem: {self.nome}>'    
+        return f'<Tipo Embalagem: {self.nome}>'

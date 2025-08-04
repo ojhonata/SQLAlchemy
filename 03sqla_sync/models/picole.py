@@ -58,10 +58,10 @@ class Picole(ModelBase):
     ingredientes: List[Ingrediente] = orm.relationship('Ingrediente', secondary=ingredientes_picole, backref='ingrediente', lazy='joined')
 
     # um picolé pode ter vários conservantes ou mesmo nenhum
-    conservantes: Optional[List[Conservante]] = orm.relationship('Conservantes', secondary=conservantes_picole, backref='conservante', lazy='joined')
+    conservantes: Optional[List[Conservante]] = orm.relationship('Conservante', secondary=conservantes_picole, backref='conservantes', lazy='joined')
 
     # um picolé pode ter vários aditivos e nutritivos ou mesmo nenhum
     aditivos_nutritivos: Optional[List[AditivoNutritivo]] = orm.relationship('AditivoNutritivo', secondary=aditivos_nutritivos_picole, backref='aditivo_nutritivo', lazy='joined')
 
     def __repr__(self) -> int:
-        return f'<Lote: {self.id}>'
+        return f'ID: {self.id} \n Preco: {self.preco}'
