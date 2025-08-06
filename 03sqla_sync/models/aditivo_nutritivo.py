@@ -12,4 +12,4 @@ class AditivoNutritivo(ModelBase):
     formula_quimica: str = sa.Column(sa.String(45), unique=True, nullable=False)
 
     def __repr__(self) -> str:
-        return f'<Nutritivo Aditivo: {self.nome}>'
+        return f'Nutritivo Aditivo: {self.nome}'

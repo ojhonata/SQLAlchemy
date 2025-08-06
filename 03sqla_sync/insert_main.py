@@ -13,7 +13,7 @@ from models.nota_fiscal import NotaFiscal
 from models.picole import Picole
 
 # 1 Aditivo Nutritivo
-def insert_aditivo_nutritivo() -> None:
+def insert_aditivo_nutritivo() -> AditivoNutritivo:
     print('Cadastrando sabor')
 
     print('Cadastrando Aditivo Nutritivo')
@@ -25,8 +25,9 @@ def insert_aditivo_nutritivo() -> None:
 
     with create_session() as session:
         session.add(an)
-
         session.commit()
+
+        return an
 
 
 # 2 Sabor
@@ -67,7 +68,7 @@ def insert_tipo_picole() -> None:
         return tp
 
 # 5 Ingredientes
-def insert_ingrediente() -> None:
+def insert_ingrediente() -> Ingrediente:
     print('Cadastrando ingredientes')
 
     #ingredientes = [Ingrediente(nome='Açúcar')]
@@ -78,10 +79,12 @@ def insert_ingrediente() -> None:
     with create_session() as session:
         session.add(ingrediente)
         session.commit()
+
+        return ingrediente
     print('Ingredientes cadastrados!')
 
 # 6 conservantes
-def insert_conservante() -> None:
+def insert_conservante() -> Conservante:
     print('Cadastrando Conservantes')
 
     nome: str = input('Digite o Conservante: ')
@@ -96,6 +99,8 @@ def insert_conservante() -> None:
         session.add(conservante)
         session.commit()
 
+        return conservante
+
 # 7 revendedores
 def insert_revendedor() -> Revendedor:
     print('Cadastrando Revendedor')
@@ -108,7 +113,7 @@ def insert_revendedor() -> Revendedor:
     with create_session() as session:
         session.add(revendedor)
         session.commit()
-    return revendedor
+        return revendedor
 
 # 8 Lotes
 def insert_lote() -> Lote:
@@ -123,7 +128,7 @@ def insert_lote() -> Lote:
     with create_session() as session:
         session.add(lote)
         session.commit()
-    return lote
+        return lote
 
 # 9 Notas Fiscais
 def insert_nota_fiscal() -> NotaFiscal:
@@ -145,9 +150,9 @@ def insert_nota_fiscal() -> NotaFiscal:
     with create_session() as session:
         session.add(nf)
         session.commit()
-    return nf
+        return nf
 
-def insert_picole() -> Picole:
+def insert_picole() -> None:
     print('Cadastrando Picolé')
 
     preco: float = input('Digite o preço do picolé: ')
@@ -169,6 +174,14 @@ def insert_picole() -> Picole:
     with create_session() as session:
         session.add(picole)
         session.commit()
+    
+        print('Picole cadastrado')
+        print(f'Preço: {picole.preco}')
+        print(f'Sabor: {picole.sabor.nome}')
+        print(f'Tipo de picolé: {picole.tipo_picole.nome}')
+        print(f'Tipo embalagem {picole.tipo_embalagem.nome}')
+        print(f'Ingrediente: {picole.ingredientes}')
+
 
 if __name__ == '__main__':
     #insert_aditivo_nutritivo()
@@ -194,5 +207,4 @@ if __name__ == '__main__':
     # nota_fiscals = insert_nota_fiscal()
     # print(nota_fiscals)
 
-    picoles = insert_picole()
-    print(picoles)
+    insert_picole()

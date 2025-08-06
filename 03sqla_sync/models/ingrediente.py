@@ -12,4 +12,4 @@ class Ingrediente(ModelBase):
     nome: str = sa.Column(sa.String(45), unique=True, nullable=False)
 
     def __repr__(self) -> str:
-        return f'<Ingrediente: {self.nome}>'    
+        return f'Ingrediente: {self.nome}'    

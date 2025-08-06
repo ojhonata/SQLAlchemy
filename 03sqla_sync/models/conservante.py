@@ -13,4 +13,4 @@ class Conservante(ModelBase):
     descricao: str = sa.Column(sa.String(45), nullable=False)
 
     def __repr__(self) -> str:
-        return f'<Conservante: {self.nome}>'    
+        return f'Conservante: {self.nome}'    
