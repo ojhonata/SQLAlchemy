@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     # select_filtro_sabor(id_sabor = id_sabor)
 
-    id_picole = 3
+    id_picole = 4
     novo_preco = 10.0
     novo_sabor = 2
 
